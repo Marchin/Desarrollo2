@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour {
-	[SerializeField] float cameraX;
-	[SerializeField] float cameraY;
-	[SerializeField] bool invertedCam = true;
-	[SerializeField] float MinimumX;
-	[SerializeField] float MaximumX;
+	[SerializeField] float _cameraX;
+	[SerializeField] float _cameraY;
+	[SerializeField] bool _invertedCam = true;
+	[SerializeField] float _minimumX;
+	[SerializeField] float _maximumX;
 	Camera playerCamera;
 	Rigidbody playerRigidBody;
 
@@ -17,10 +17,11 @@ public class CameraMovement : MonoBehaviour {
 	}
 
 	void Update() {
-		float cameraVertical = Input.GetAxis("Mouse Y")* (invertedCam? - 1f : 1f);
-		Vector3 rotationY = new Vector3(cameraVertical, 0f, 0f)* cameraY;
+		float cameraVertical = Input.GetAxis("Mouse Y")* (_invertedCam? - 1f : 1f);
+		Vector3 rotationY = new Vector3(cameraVertical, 0f, 0f)* _cameraY;
 		playerCamera.transform.Rotate(rotationY);
-		playerCamera.transform.localRotation = ClampRotationAroundXAxis(playerCamera.transform.localRotation);
+		playerCamera.transform.localRotation = 
+			ClampRotationAroundXAxis(playerCamera.transform.localRotation);
 	}
 
 	void FixedUpdate() {
@@ -29,7 +30,7 @@ public class CameraMovement : MonoBehaviour {
 			playerRigidBody.angularVelocity = Vector3.zero;
 		} else {
 			Vector3 rotationX = new Vector3(0f, cameraHorizontal, 0f);
-			playerRigidBody.angularVelocity = rotationX * cameraX;
+			playerRigidBody.angularVelocity = rotationX * _cameraX;
 		}
 	}
 
@@ -41,7 +42,7 @@ public class CameraMovement : MonoBehaviour {
 
 		float angleX = 2.0f * Mathf.Rad2Deg * Mathf.Atan(q.x);
 
-		angleX = Mathf.Clamp(angleX, MinimumX, MaximumX);
+		angleX = Mathf.Clamp(angleX, _minimumX, _maximumX);
 
 		q.x = Mathf.Tan(0.5f * Mathf.Deg2Rad * angleX);
 
