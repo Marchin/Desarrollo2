@@ -22,4 +22,8 @@ public class PlayerStats : MonoBehaviour {
 	public void AddScore(float points) {
 		_score += points;
 	}
+
+	public float GetHealth() {
+		return _currHealth;
+	}
 }
