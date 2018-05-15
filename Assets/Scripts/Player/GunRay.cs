@@ -8,8 +8,13 @@ public class GunRay : MonoBehaviour {
 	[SerializeField] LayerMask explosivesLayer;
 	[SerializeField] Transform explosivePivot;
 	Rigidbody explosiveRigidbody = null;
+	AudioSource gunSound;
 	ExplosionController explosive;
 	RaycastHit _beam;
+
+	private void Awake() {
+		gunSound = GetComponent<AudioSource>();
+	}
 
 	void Update() {
 		if (Input.GetButtonDown("Fire1")) {
@@ -20,12 +25,14 @@ public class GunRay : MonoBehaviour {
 				explosiveRigidbody.useGravity = true;
 				explosiveRigidbody = null;
 				explosive = null;
+				gunSound.Stop();
 			} else {
 				if (Physics.Raycast(transform.position, transform.forward,
-					out _beam, _distance, explosivesLayer)) {
-						
+						out _beam, _distance, explosivesLayer)) {
+
 					explosiveRigidbody = _beam.rigidbody;
 					explosiveRigidbody.useGravity = false;
+					gunSound.Play();
 				}
 			}
 		}

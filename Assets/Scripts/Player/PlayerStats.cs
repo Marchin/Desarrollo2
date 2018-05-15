@@ -1,29 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerStats : MonoBehaviour {
-	[SerializeField] float _maxHealth;
-	float _currHealth;
-	float _score;
+	[SerializeField] int _maxHealth;
+	public UnityEvent scoreChanged;
+	public UnityEvent lifeChanged;
+	int _currHealth;
+	int _score;
 
 	void Awake() {
 		_currHealth = _maxHealth;
-		_score = 0f;
+		_score = 0;
 	}
 
-	public void TakeDamage(float damage) {
+	public void TakeDamage(int damage) {
 		_currHealth -= damage;
-		if (_currHealth <= 0f) {
+		lifeChanged.Invoke();
+		if (_currHealth <= 0) {
 			gameObject.SetActive(false);
 		}
 	}
 
-	public void AddScore(float points) {
-		_score += points;
+	public int GetHealth() {
+		return _currHealth;
 	}
 
-	public float GetHealth() {
-		return _currHealth;
+	public void AddScore(int points) {
+		_score += points;
+		scoreChanged.Invoke();
+	}
+
+	public int GetScore() {
+		return _score;
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ExplosionController : MonoBehaviour {
 	[SerializeField] float _radius = 2f;
-	[SerializeField] float _damage = 10f;
+	[SerializeField] int _damage = 10;
 	[SerializeField] LayerMask playersLayer;
 	[SerializeField] ParticleSystem explosionEffect;
 	[SerializeField] AudioSource explosionSound;
@@ -25,7 +25,9 @@ public class ExplosionController : MonoBehaviour {
 			player = damagedPlayer.transform.gameObject.GetComponent<PlayerStats>();
 			if (player) {
 				player.TakeDamage(_damage);
+				if (_thrower!=player){
 				_thrower.AddScore(_damage);
+				}
 			} else {
 				Debug.Log("Health not found");
 			}
