@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class ExplosionController : MonoBehaviour {
 	[SerializeField] float _radius = 2f;
@@ -8,7 +7,7 @@ public class ExplosionController : MonoBehaviour {
 	[SerializeField] LayerMask playersLayer;
 	[SerializeField] ParticleSystem explosionEffect;
 	[SerializeField] AudioSource explosionSound;
-	PlayerStats _thrower;
+    PlayerStats _thrower;
 	bool _active;
 
 	private void OnCollisionEnter() {

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour {
 
+    public void Victory() {
 
+    }
 
+    public void Defeat() {
+
+    }
 }

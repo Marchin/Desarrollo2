@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour {
-	public static ScoreManager _instantiate;
+	public static ScoreManager _instance;
 	int playerScore;
 
 	private void Awake() {
-		if (_instantiate) {
+		if (_instance) {
 			Destroy(gameObject);
 		} else {
-			_instantiate = this;
+			_instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
 	}
