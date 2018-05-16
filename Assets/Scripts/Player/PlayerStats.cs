@@ -5,10 +5,12 @@ public class PlayerStats : MonoBehaviour {
 	[SerializeField] int _maxHealth;
 	public UnityEvent scoreChanged;
 	public UnityEvent lifeChanged;
+	Client client;
 	int _currHealth;
 	int _score;
 
 	void Awake() {
+		client = GetComponent<Client>();
 		_currHealth = _maxHealth;
 		_score = 0;
 	}
@@ -16,7 +18,7 @@ public class PlayerStats : MonoBehaviour {
 	public void TakeDamage(int damage) {
 		_currHealth -= damage;
 		lifeChanged.Invoke();
-		if (_currHealth <= 0) {
+		if (_currHealth <= 0 && !client) {
 			gameObject.SetActive(false);
 		}
 	}
@@ -27,6 +29,7 @@ public class PlayerStats : MonoBehaviour {
 
 	public void AddScore(int points) {
 		_score += points;
+		ScoreManager._instance.SubmitScore(points);
 		scoreChanged.Invoke();
 	}
 

@@ -1,14 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
+    public static LevelManager _instantiate;
+
+    private void Awake() {
+        if (_instantiate) {
+            Destroy(gameObject);
+        } else {
+            _instantiate = this;
+        }
+    }
 
     public void Victory() {
-
+        SceneManager.LoadScene("Victory");
     }
 
     public void Defeat() {
-
+        SceneManager.LoadScene("Defeat");
     }
 }

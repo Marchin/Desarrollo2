@@ -12,7 +12,7 @@ public class ExplosiveSpawner : MonoBehaviour {
         explosivesList = new List<GameObject>();
         for (int i = 0; i < ammount; i++) {
             GameObject explosive = Instantiate(explosivePrefab);
-            transform.SetParent(transform.parent);
+            explosive.transform.SetParent(transform);
             explosive.SetActive(false);
             explosivesList.Add(explosive);
         }

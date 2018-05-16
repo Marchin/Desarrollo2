@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EnemyManager : MonoBehaviour {
-    static EnemyManager _instance;
+    public static EnemyManager _instance;
     List<GameObject> EnemyList;
-    
+
     private void Awake() {
         if (_instance) {
             Destroy(gameObject);
         } else {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
+            EnemyList = new List<GameObject>();
         }
     }
 
@@ -23,7 +23,7 @@ public class EnemyManager : MonoBehaviour {
     public void Remove(GameObject Enemy) {
         EnemyList.Remove(Enemy);
         if (EnemyList.Count == 0) {
-            //victoria
+            LevelManager._instantiate.Victory();
         }
     }
 

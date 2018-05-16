@@ -623,6 +623,7 @@ GameObject:
   - component: {fileID: 54537729059979496}
   - component: {fileID: 136607650582033660}
   - component: {fileID: 114027044089164910}
+  - component: {fileID: 114378469586351540}
   m_Layer: 8
   m_Name: NPC
   m_TagString: Untagged
@@ -1534,7 +1535,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21572c9cf54569b4d8f4a04feb02332e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 30
+  _maxHealth: 10
+  scoreChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  lifeChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &114378469586351540
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1766540989069098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c89eba5dcb5a994c9c0eca72f6fb8ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136607650582033660
 CapsuleCollider:
   m_ObjectHideFlags: 1

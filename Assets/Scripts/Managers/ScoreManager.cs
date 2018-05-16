@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour {
 	public static ScoreManager _instance;
-	int playerScore;
+	int playerScore = 0;
 
 	private void Awake() {
 		if (_instance) {
@@ -15,7 +15,11 @@ public class ScoreManager : MonoBehaviour {
 		}
 	}
 
-	void SubmitScore(int score) {
+	public int GetScore() {
+		return playerScore;
+	}
+
+	public void SubmitScore(int score) {
 		playerScore += score;
 	}
 }

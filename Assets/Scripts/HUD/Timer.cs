@@ -1,6 +1,6 @@
 ﻿using System;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class Timer : MonoBehaviour {
     TimeSpan timeSpan;
@@ -13,10 +13,9 @@ public class Timer : MonoBehaviour {
         timerText.text = string.Format("{0}:{1}", Mathf.Floor(maxTime / 60f), Mathf.Floor(maxTime % 60f));
     }
 
-
     void Update() {
         if (maxTime <= 0f) {
-            //Derrota
+            LevelManager._instantiate.Defeat();
         } else {
             maxTime -= Time.deltaTime;
             timeSpan = TimeSpan.FromSeconds(maxTime);

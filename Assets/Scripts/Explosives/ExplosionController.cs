@@ -25,7 +25,7 @@ public class ExplosionController : MonoBehaviour {
 			if (player) {
 				player.TakeDamage(_damage);
 				if (_thrower!=player){
-				_thrower.AddScore(_damage);
+					_thrower.AddScore(_damage);
 				}
 			} else {
 				Debug.Log("Health not found");

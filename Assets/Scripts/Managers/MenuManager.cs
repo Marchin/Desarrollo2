@@ -9,7 +9,6 @@ public class MenuManager : MonoBehaviour {
             Destroy(gameObject);
         } else {
             _instantiate = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
 
