@@ -139,13 +139,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4456876285225774}
   - component: {fileID: 33008853727921858}
-  - component: {fileID: 136671703202634024}
+  - component: {fileID: 143562130687483922}
   - component: {fileID: 23629656149756958}
-  - component: {fileID: 54762984053027562}
-  - component: {fileID: 114974300945936894}
+  - component: {fileID: 114987983265035008}
   - component: {fileID: 114112060524427770}
-  - component: {fileID: 114868425443011102}
   - component: {fileID: 114277326016771044}
+  - component: {fileID: 114722612257850790}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -196,7 +195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4447538483273054}
   m_Layer: 8
-  m_Name: ExplosivePivot
+  m_Name: PickupPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -263,7 +262,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1817784456619286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 332, y: 1, z: 336}
+  m_LocalPosition: {x: 332, y: 1, z: 340.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4737335567974090}
@@ -637,21 +636,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1629306804082020}
   m_Mesh: {fileID: 4300002, guid: 90c58c65f76dbe741b5dede2c0ac644d, type: 3}
---- !u!54 &54762984053027562
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1817784456619286}
-  serializedVersion: 2
-  m_Mass: 75
-  m_Drag: 2
-  m_AngularDrag: 0.1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
 --- !u!81 &81158803497032952
 AudioListener:
   m_ObjectHideFlags: 1
@@ -669,8 +653,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 69445cce8a60f47a59a639a565185c15, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.813
   m_Pitch: -1.06
   Loop: 1
   Mute: 0
@@ -784,6 +768,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100
+  scoreChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  lifeChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114522392119057280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -797,11 +791,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _distance: 4
   _force: 1000
-  explosivesLayer:
+  pickupsLayer:
     serializedVersion: 2
     m_Bits: 2048
-  explosivePivot: {fileID: 4447538483273054}
---- !u!114 &114868425443011102
+  pickupPivot: {fileID: 4447538483273054}
+--- !u!114 &114722612257850790
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -809,13 +803,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1817784456619286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f05904cf455b1c489494b6428cab512, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cef33a1e56aafb4f9c44cf868cd2a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpDuration: 0.5
-  _jumpHeight: 1.5
-  _gravityMultiplier: 2
---- !u!114 &114974300945936894
+--- !u!114 &114987983265035008
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -823,11 +814,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1817784456619286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e47a7ec5957ab5409511bdbeb62bcc0, type: 3}
+  m_Script: {fileID: 11500000, guid: 96f888b41cef8e042b0941fe672be77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 600
-  breakDivisor: 8
+  movementSpeed: 4
+  gravity: 20
+  jumpForce: 8
 --- !u!124 &124169740536274252
 Behaviour:
   m_ObjectHideFlags: 1
@@ -835,18 +827,22 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1755028861938168}
   m_Enabled: 1
---- !u!136 &136671703202634024
-CapsuleCollider:
+--- !u!143 &143562130687483922
+CharacterController:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1817784456619286}
-  m_Material: {fileID: 13400000, guid: 2896539d3c6d8c440b9acc4617a60653, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  serializedVersion: 2
   m_Height: 2
-  m_Direction: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198460436619082882
 ParticleSystem:

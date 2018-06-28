@@ -5,11 +5,11 @@ using UnityEngine;
 public class GunRay : MonoBehaviour {
 	[SerializeField] float _distance = 4f;
 	[SerializeField] float _force = 100f;
-	[SerializeField] LayerMask explosivesLayer;
-	[SerializeField] Transform explosivePivot;
-	Rigidbody explosiveRigidbody = null;
+	[SerializeField] LayerMask pickupsLayer;
+	[SerializeField] Transform pickupPivot;
+	Rigidbody pickupRigidbody = null;
 	AudioSource gunSound;
-	ExplosionController explosive;
+	Pickup pickup;
 	RaycastHit _beam;
 
 	private void Awake() {
@@ -18,20 +18,20 @@ public class GunRay : MonoBehaviour {
 
 	void Update() {
 		if (Input.GetButtonDown("Fire1")) {
-			if (explosiveRigidbody) {
-				explosive = explosiveRigidbody.GetComponent<ExplosionController>();
-				explosive.Activate(GetComponentInParent<PlayerStats>());
-				explosiveRigidbody.AddForce(explosivePivot.forward * _force);
-				explosiveRigidbody.useGravity = true;
-				explosiveRigidbody = null;
-				explosive = null;
+			if (pickupRigidbody) {
+				pickup = pickupRigidbody.GetComponent<Pickup>();
+				pickup.Activate(GetComponentInParent<CharacterStats>());
+				pickupRigidbody.AddForce(pickupPivot.forward * _force);
+				pickupRigidbody.useGravity = true;
+				pickupRigidbody = null;
+				pickup = null;
 				gunSound.Stop();
 			} else {
 				if (Physics.Raycast(transform.position, transform.forward,
-						out _beam, _distance, explosivesLayer)) {
+						out _beam, _distance, pickupsLayer)) {
 
-					explosiveRigidbody = _beam.rigidbody;
-					explosiveRigidbody.useGravity = false;
+					pickupRigidbody = _beam.rigidbody;
+					pickupRigidbody.useGravity = false;
 					gunSound.Play();
 				}
 			}
@@ -39,14 +39,14 @@ public class GunRay : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		if (explosiveRigidbody) {
-			explosiveRigidbody.position = explosivePivot.position;
-			explosiveRigidbody.rotation = explosivePivot.rotation;
+		if (pickupRigidbody) {
+			pickupRigidbody.position = pickupPivot.position;
+			pickupRigidbody.rotation = pickupPivot.rotation;
 		}
 	}
 
 	private void OnDrawGizmos() {
-		Gizmos.DrawWireSphere(explosivePivot.position, 0.1f);
+		Gizmos.DrawWireSphere(pickupPivot.position, 0.1f);
 	}
 
 }

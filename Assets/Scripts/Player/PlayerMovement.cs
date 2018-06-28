@@ -31,19 +31,5 @@ public class PlayerMovement : MonoBehaviour {
 			movement = movement / Vector3.Magnitude(movement);
 		}
 		playerRigidBody.AddRelativeForce(movement * movementSpeed);
-		// Vector3 localSpeed = transform.InverseTransformVector(
-		// 	playerRigidBody.velocity);
-		// if (moveHorizontal == 0f && localSpeed.x != 0f) {
-		// 	stopHorizontal = transform.right * (-localSpeed.x / breakDivisor);
-		// } else {
-		// 	stopHorizontal = Vector3.zero;
-		// }
-		// if (moveVertical == 0f && localSpeed.z != 0f) {
-		// 	stopVertical = transform.forward * (-localSpeed.z / breakDivisor);
-		// } else {
-		// 	stopVertical = Vector3.zero;
-		// }
-		// playerRigidBody.velocity += transform.TransformVector(stopVertical)+
-		// 	transform.TransformVector(stopHorizontal);
 	}
 }

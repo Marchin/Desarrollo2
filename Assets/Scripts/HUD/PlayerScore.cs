@@ -2,7 +2,7 @@
 using UnityEngine;
 
 public class PlayerScore : MonoBehaviour {
-    [SerializeField] PlayerStats playerStats;
+    [SerializeField] CharacterStats playerStats;
     TextMeshProUGUI scoreText;
     int playerScore;
 

@@ -4,20 +4,21 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour {
     public static MenuManager _instantiate;
 
-    private void Awake() {
+    private void Awake () {
         if (_instantiate) {
-            Destroy(gameObject);
+            Destroy (gameObject);
         } else {
             _instantiate = this;
         }
     }
 
-    public void StartGame() {
-        SceneManager.LoadScene("Level");
+    public void StartGame () {
+        Cursor.visible = false;
+        SceneManager.LoadScene ("Level");
     }
 
-    public void ExitGame() {
-        Application.Quit();
+    public void ExitGame () {
+        Application.Quit ();
     }
 
 }

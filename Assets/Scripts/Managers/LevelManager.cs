@@ -14,9 +14,11 @@ public class LevelManager : MonoBehaviour {
 
     public void Victory() {
         SceneManager.LoadScene("Victory");
+        Cursor.visible = true;
     }
 
     public void Defeat() {
         SceneManager.LoadScene("Defeat");
+        Cursor.visible = true;
     }
 }

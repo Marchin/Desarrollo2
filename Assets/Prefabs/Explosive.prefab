@@ -74,8 +74,9 @@ GameObject:
   - component: {fileID: 23082640828121092}
   - component: {fileID: 54250636074718636}
   - component: {fileID: 136595910741451220}
-  - component: {fileID: 114527811083658696}
   - component: {fileID: 82975583567879728}
+  - component: {fileID: 114211263478942362}
+  - component: {fileID: 114958016982827850}
   m_Layer: 11
   m_Name: Explosive
   m_TagString: Untagged
@@ -429,7 +430,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114527811083658696
+--- !u!114 &114211263478942362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1313107623886588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 185d0f4dc701f05458073114675e67dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114958016982827850
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -440,13 +452,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e873dbe40e3ac47b841e009017f814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 2
-  _damage: 10
-  playersLayer:
+  m_radius: 2
+  m_playersLayer:
     serializedVersion: 2
-    m_Bits: 256
-  explosionEffect: {fileID: 198296594379098486}
-  explosionSound: {fileID: 82975583567879728}
+    m_Bits: 1280
+  m_explosionEffect: {fileID: 198296594379098486}
+  m_explosionSound: {fileID: 82975583567879728}
+  m_damage: 10
 --- !u!136 &136595910741451220
 CapsuleCollider:
   m_ObjectHideFlags: 1

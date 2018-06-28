@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class LifeBar : MonoBehaviour {
-	[SerializeField] PlayerStats playerStats;
+	[SerializeField] CharacterStats playerStats;
 	Image lifeBar;
 	TextMeshProUGUI lifeText;
 	int playerHealth;

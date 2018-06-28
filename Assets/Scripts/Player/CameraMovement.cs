@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraMovement : MonoBehaviour {
 	[SerializeField] float _cameraX;
@@ -9,28 +7,21 @@ public class CameraMovement : MonoBehaviour {
 	[SerializeField] float _minimumX;
 	[SerializeField] float _maximumX;
 	Camera playerCamera;
-	Rigidbody playerRigidBody;
 
 	void Start() {
 		playerCamera = GetComponentInChildren<Camera>();
-		playerRigidBody = GetComponent<Rigidbody>();
 	}
 
 	void Update() {
 		float cameraVertical = Input.GetAxis("Mouse Y")* (_invertedCam? - 1f : 1f);
 		Vector3 rotationY = new Vector3(cameraVertical, 0f, 0f)* _cameraY;
 		playerCamera.transform.Rotate(rotationY);
-		playerCamera.transform.localRotation = 
+		playerCamera.transform.localRotation =
 			ClampRotationAroundXAxis(playerCamera.transform.localRotation);
-	}
 
-	void FixedUpdate() {
 		float cameraHorizontal = Input.GetAxis("Mouse X");
-		if (cameraHorizontal == 0f) {
-			playerRigidBody.angularVelocity = Vector3.zero;
-		} else {
-			Vector3 rotationX = new Vector3(0f, cameraHorizontal, 0f);
-			playerRigidBody.angularVelocity = rotationX * _cameraX;
+		if (cameraHorizontal != 0f) {
+			transform.Rotate(Vector3.up * cameraHorizontal * _cameraX);
 		}
 	}
 
