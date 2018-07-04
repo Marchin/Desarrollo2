@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour {
-    [SerializeField] float movementSpeed;
-    [SerializeField] float gravity;
-    [SerializeField] float jumpForce;
+    [SerializeField] float m_movementSpeed;
+    [SerializeField] float m_gravity;
+    [SerializeField] float m_jumpForce;
     CharacterController cc;
     Vector3 movement = Vector3.zero;
+    int maxJumps = 1;
+    int availableJumps;
 
     private void Awake() {
         cc = GetComponent<CharacterController>();
-
+        availableJumps = maxJumps;
     }
 
     private void Update() {
@@ -26,13 +28,29 @@ public class CharacterMovement : MonoBehaviour {
                 movement = movement / Vector3.Magnitude(movement);
             }
             movement = transform.TransformDirection(movement);
-            movement *= movementSpeed;
-            if (Input.GetButtonDown("Jump")) {
-                movement.y = jumpForce;
-            }
+            movement *= m_movementSpeed;
+            availableJumps = maxJumps;
         }
-        movement.y -= gravity * Time.deltaTime;
+        if (Input.GetButtonDown("Jump")&& availableJumps > 0) {
+            Jump();
+        }
+        movement.y -= m_gravity * Time.deltaTime;
         cc.Move(movement * Time.deltaTime);
     }
     void Rotation() { }
+
+    void Jump() {
+        movement.y = m_jumpForce;
+        availableJumps--;
+    }
+
+    public void SetJumpAmount(int amount, float duration) {
+        maxJumps = amount;
+        availableJumps = amount;
+        Invoke("ResetMaxJumps", duration);
+    }
+
+    void ResetMaxJumps() {
+        maxJumps = 1;
+    }
 }

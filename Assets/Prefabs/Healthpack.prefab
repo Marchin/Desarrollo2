@@ -70,9 +70,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1638135023370678}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 3.6907606, y: -20.299929, z: -6.1912827}
-  m_LocalScale: {x: 16.796003, y: 16.795965, z: 16.795965}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4204921442818106}
   m_RootOrder: 0
@@ -224,13 +224,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5de43a2f1d15da648bbb1384436dc8de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heal: 10
-  _radius: 2
-  _particleFx: {fileID: 198463732460806928}
-  _soundFx: {fileID: 0}
-  _allies:
+  m_heal: 10
+  m_radius: 2
+  m_particleFx: {fileID: 198463732460806928}
+  m_soundFx: {fileID: 82354504806183402}
+  m_affected:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
 --- !u!114 &114808465682139596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -262,12 +262,12 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1638135023370678}
   serializedVersion: 5
-  lengthInSec: 0.8
-  simulationSpeed: 1
+  lengthInSec: 2
+  simulationSpeed: 1.5
   stopAction: 0
-  looping: 1
+  looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -315,14 +315,14 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1097846161
+  randomSeed: -821591605
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.8
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -875,7 +875,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.25
+      scalar: 2
       minScalar: 10
       maxCurve:
         serializedVersion: 2
