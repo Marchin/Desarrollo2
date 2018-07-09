@@ -5,7 +5,8 @@ using UnityEngine;
 public class PickupSpawner : MonoBehaviour {
     [SerializeField] GameObject pickupPrefab;
     [SerializeField] int ammount;
-    [SerializeField] float rango;
+    [SerializeField] float rangoX;
+    [SerializeField] float rangoZ;
     List<GameObject> pickupsList;
 
     void Start() {
@@ -29,15 +30,15 @@ public class PickupSpawner : MonoBehaviour {
 
     void Spawn(GameObject pickup) {
         Vector3 spawnOffset = new Vector3(
-            Random.Range(-rango, rango),
+            Random.Range(-rangoX, rangoX),
             0f,
-            Random.Range(-rango, rango)
+            Random.Range(-rangoZ, rangoZ)
         );
         pickup.transform.position = transform.position + spawnOffset;
         pickup.SetActive(true);
     }
 
     private void OnDrawGizmos() {
-        Gizmos.DrawWireCube(transform.position, new Vector3(rango * 2, 0f, rango * 2));
+        Gizmos.DrawWireCube(transform.position, new Vector3(rangoX * 2, 0f, rangoZ * 2));
     }
 }
