@@ -454,7 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_damage: 10
   m_radius: 2
-  m_playersLayer:
+  m_affectedLayer:
     serializedVersion: 2
     m_Bits: 1024
   m_explosionEffect: {fileID: 198296594379098486}

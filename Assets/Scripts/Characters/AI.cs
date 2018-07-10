@@ -21,7 +21,6 @@ public class AI : MonoBehaviour {
         m_targetLayer = LayerMask.GetMask("Pickups");
         m_gunRay = GetComponentInChildren<Gunray>();
         m_agent = GetComponent<NavMeshAgent>();
-        m_agent.destination = transform.position;
         m_searchingTime = m_searchInterval;
     }
 
@@ -62,7 +61,6 @@ public class AI : MonoBehaviour {
 
     void Pick() {
         Look(m_pickupFound.transform.position);
-        //if (!m_agent.hasPath) {
         m_gunRay.Fire();
         m_currentPickup = m_gunRay.GetPickup();
         if (m_currentPickup != null) {
@@ -77,7 +75,6 @@ public class AI : MonoBehaviour {
         } else {
             Fail();
         }
-        //}
     }
 
     void FireTarget() {
@@ -97,7 +94,7 @@ public class AI : MonoBehaviour {
             m_aim.eulerAngles.y,
             transform.eulerAngles.z
         );
-        Quaternion.RotateTowards(transform.rotation, m_aim.rotation, m_agent.angularSpeed);
+        Quaternion.RotateTowards(transform.rotation, rot, m_agent.angularSpeed);
     }
 
     void Restart() {
@@ -105,6 +102,7 @@ public class AI : MonoBehaviour {
         m_pickupFound = null;
         m_currentPickup = null;
         m_fireTarget = null;
+        m_searchingTime = 0;
         fails = 0;
     }
 

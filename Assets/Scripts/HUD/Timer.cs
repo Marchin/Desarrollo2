@@ -3,8 +3,8 @@ using TMPro;
 using UnityEngine;
 
 public class Timer : MonoBehaviour {
+    [SerializeField] float maxTime = 100f;
     TimeSpan timeSpan;
-    float maxTime = 100f;
     TextMeshProUGUI timerText;
 
     void Start() {

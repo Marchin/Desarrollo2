@@ -3,7 +3,7 @@
 public class Explosive : MonoBehaviour {
 	[SerializeField] int m_damage = 10;
 	[SerializeField] float m_radius = 2f;
-	[SerializeField] LayerMask m_playersLayer;
+	[SerializeField] LayerMask m_affectedLayer;
 	[SerializeField] ParticleSystem m_explosionEffect;
 	[SerializeField] AudioSource m_explosionSound;
 	Pickup pickup;
@@ -14,7 +14,8 @@ public class Explosive : MonoBehaviour {
 		}
 		pickup.SetProperties(
 			m_radius,
-			m_playersLayer,
+			m_affectedLayer,
+	
 			m_explosionEffect,
 			m_explosionSound,
 			Explode

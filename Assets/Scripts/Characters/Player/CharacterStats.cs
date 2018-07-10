@@ -16,6 +16,9 @@ public class CharacterStats : MonoBehaviour {
 	public void TakeDamage(int damage) {
 		_currHealth -= damage;
 		lifeChanged.Invoke();
+		if (_currHealth <= 0){
+			gameObject.SetActive(false);
+		}
 	}
 
 	public void Heal(int heal) {
