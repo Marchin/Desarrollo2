@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class AI : MonoBehaviour {
     [SerializeField] float m_searchRadius;
     [SerializeField] float m_searchInterval;
-    [SerializeField] float m_turnRate;
+    [SerializeField] float m_throwingDistance = 10f;
     [SerializeField] bool m_isEnemy = false;
     [SerializeField] Transform m_aim;
     [SerializeField] Transform[] m_patrolPoints;
@@ -47,6 +47,7 @@ public class AI : MonoBehaviour {
                 m_searchRadius, m_targetLayer);
             if (colliders.Length >= 1) {
                 target = colliders[0];
+                m_agent.SetDestination(target.transform.position);
             } else {
                 Patrol();
             }
@@ -61,7 +62,6 @@ public class AI : MonoBehaviour {
 
     void Pick() {
         Look(m_pickupFound.transform.position);
-        m_agent.SetDestination(m_pickupFound.transform.position);
         //if (!m_agent.hasPath) {
         m_gunRay.Fire();
         m_currentPickup = m_gunRay.GetPickup();
@@ -70,6 +70,9 @@ public class AI : MonoBehaviour {
                 m_currentPickup.SetToEnemy();
             }
             m_targetLayer = m_currentPickup.GetTarget();
+            Vector3 lookStraight = m_aim.rotation.eulerAngles;
+            lookStraight.x = -15;
+            m_aim.eulerAngles = lookStraight;
             Success();
         } else {
             Fail();
@@ -79,7 +82,9 @@ public class AI : MonoBehaviour {
 
     void FireTarget() {
         Look(m_fireTarget.transform.position);
-        if (!m_agent.hasPath) {
+        if (Vector3.Distance(transform.position, m_fireTarget.transform.position) <
+            m_throwingDistance) {
+
             m_gunRay.Fire();
             Restart();
         }
@@ -87,12 +92,12 @@ public class AI : MonoBehaviour {
 
     void Look(Vector3 targetPosition) {
         m_aim.LookAt(targetPosition);
-        transform.rotation = new Quaternion(
-            transform.rotation.x,
-            m_aim.rotation.y,
-            transform.rotation.z,
-            transform.rotation.w
+        Quaternion rot = Quaternion.Euler(
+            transform.eulerAngles.x,
+            m_aim.eulerAngles.y,
+            transform.eulerAngles.z
         );
+        Quaternion.RotateTowards(transform.rotation, m_aim.rotation, m_agent.angularSpeed);
     }
 
     void Restart() {
@@ -105,7 +110,7 @@ public class AI : MonoBehaviour {
 
     void Fail() {
         fails++;
-        if (fails == 5) {
+        if (fails == 25) {
             Restart();
         }
     }

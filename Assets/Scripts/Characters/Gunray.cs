@@ -22,8 +22,7 @@ public class Gunray : MonoBehaviour {
 	}
 
 	public void Fire() {
-		if (m_pickupRigidbody) {
-			m_pickup = m_pickupRigidbody.GetComponent<Pickup>();
+		if (m_pickup) {
 			m_pickup.Activate(GetComponentInParent<CharacterStats>());
 			m_pickupRigidbody.AddForce(m_pickupPivot.forward * m_force);
 			m_pickupRigidbody.useGravity = true;
@@ -37,7 +36,7 @@ public class Gunray : MonoBehaviour {
 				m_pickupRigidbody = m_beam.rigidbody;
 				m_pickupRigidbody.useGravity = false;
 				m_gunSound.Play();
-				m_pickupRigidbody.GetComponent<Pickup>().SetToEnemy();
+				m_pickup = m_pickupRigidbody.GetComponent<Pickup>();
 			}
 		}
 	}
