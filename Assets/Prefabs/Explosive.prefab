@@ -308,7 +308,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 9a96fb19838d47a4aa48e3293607e468, type: 2}
+  - {fileID: 2100000, guid: 46f9af8402cf69c428a1602f295af31f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -452,13 +452,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e873dbe40e3ac47b841e009017f814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_damage: 10
   m_radius: 2
   m_playersLayer:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 1024
   m_explosionEffect: {fileID: 198296594379098486}
   m_explosionSound: {fileID: 82975583567879728}
-  m_damage: 10
 --- !u!136 &136595910741451220
 CapsuleCollider:
   m_ObjectHideFlags: 1

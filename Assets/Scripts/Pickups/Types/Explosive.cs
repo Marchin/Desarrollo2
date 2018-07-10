@@ -28,10 +28,11 @@ public class Explosive : MonoBehaviour {
 			player = receiver.GetComponent<CharacterStats>();
 			if (player) {
 				player.TakeDamage(m_damage);
-				if (thrower != player) {
-					thrower.AddScore(m_damage);
-				}
+				thrower.AddScore(m_damage);
 			}
+		}
+		if (Vector3.Distance(transform.position, thrower.transform.position)< m_radius) {
+			thrower.TakeDamage(m_damage);
 		}
 	}
 

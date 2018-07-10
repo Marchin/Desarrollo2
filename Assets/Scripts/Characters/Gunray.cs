@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class GunRay : MonoBehaviour {
+public class Gunray : MonoBehaviour {
 	[SerializeField] float m_distance = 4f;
-	[SerializeField] float m_force = 100f;
+	[SerializeField] float m_force = 1000f;
 	[SerializeField] LayerMask m_pickupsLayer;
 	[SerializeField] Transform m_pickupPivot;
 	Rigidbody m_pickupRigidbody = null;
@@ -12,12 +12,6 @@ public class GunRay : MonoBehaviour {
 
 	private void Awake() {
 		m_gunSound = GetComponent<AudioSource>();
-	}
-
-	void Update() {
-		if (Input.GetButtonDown("Fire1")) {
-			Fire();
-		}
 	}
 
 	void FixedUpdate() {
@@ -43,6 +37,7 @@ public class GunRay : MonoBehaviour {
 				m_pickupRigidbody = m_beam.rigidbody;
 				m_pickupRigidbody.useGravity = false;
 				m_gunSound.Play();
+				m_pickupRigidbody.GetComponent<Pickup>().SetToEnemy();
 			}
 		}
 	}

@@ -5,12 +5,10 @@ public class CharacterStats : MonoBehaviour {
 	[SerializeField] int _maxHealth;
 	public UnityEvent scoreChanged;
 	public UnityEvent lifeChanged;
-	Player player;
 	int _currHealth;
 	int _score;
 
 	void Awake() {
-		player = GetComponent<Player>();
 		_currHealth = _maxHealth;
 		_score = 0;
 	}
@@ -18,9 +16,6 @@ public class CharacterStats : MonoBehaviour {
 	public void TakeDamage(int damage) {
 		_currHealth -= damage;
 		lifeChanged.Invoke();
-		if (_currHealth <= 0 && !player) {
-			//gameObject.SetActive(false);
-		}
 	}
 
 	public void Heal(int heal) {

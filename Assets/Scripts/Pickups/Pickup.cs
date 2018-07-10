@@ -62,6 +62,18 @@ public class Pickup : MonoBehaviour {
 		return m_thrower;
 	}
 
+	public void SetToEnemy() {
+		if (m_properties.affected == LayerMask.GetMask("Enemies")) {
+			m_properties.affected = LayerMask.GetMask("Allies");
+		} else {
+			m_properties.affected = LayerMask.GetMask("Enemies");
+		}
+	}
+
+	public LayerMask GetTarget() {
+		return m_properties.affected;
+	}
+
 	struct Properties {
 		public bool state;
 		public bool onContact;
