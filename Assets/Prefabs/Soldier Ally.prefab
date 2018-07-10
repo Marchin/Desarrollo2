@@ -2706,18 +2706,7 @@ MonoBehaviour:
   m_throwingDistance: 10
   m_isEnemy: 0
   m_aim: {fileID: 4539862552720624}
-  m_patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_patrolPoints: []
 --- !u!120 &120613672961764766
 LineRenderer:
   m_ObjectHideFlags: 1
