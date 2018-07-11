@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class PickupPercentage : MonoBehaviour {
+public class PickupPercentage {
     public GameObject pickup;
     public float percentage = 0;
 }
