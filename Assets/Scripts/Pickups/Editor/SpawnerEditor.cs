@@ -11,6 +11,7 @@ public class SpawnerEditor : Editor {
         DrawDefaultInspector();
         PickupSpawner pickupSpawner = target as PickupSpawner;
         List<PickupPercentage> pickupsList = pickupSpawner.specialPickups;
+        CheckPercentage(pickupsList);
         int size = pickupsList.Count;
         EditorGUILayout.LabelField("Special Pickups:");
         EditorGUI.BeginChangeCheck();
@@ -61,6 +62,18 @@ public class SpawnerEditor : Editor {
                 EditorUtility.SetDirty(target);
             }
             GUILayout.EndHorizontal();
+        }
+    }
+
+    void CheckPercentage(List<PickupPercentage> pList) {
+        float sum = 0;
+        for (int i = 0; i < pList.Count; i++) {
+            sum += pList[i].percentage;
+            if (sum > maxSpecials) {
+                float diff = sum - maxSpecials;
+                pList[i].percentage -= diff;
+                sum -= diff;
+            }
         }
     }
 }
