@@ -15,7 +15,6 @@ public class Gunray : MonoBehaviour {
     private void Awake() {
         m_gunSound = GetComponent<AudioSource>();
         m_lineRenderer = GetComponentInChildren<LineRenderer>();
-        m_lineRenderer.SetPosition(1, new Vector3(0f, 0f, m_distance));
     }
 
     void FixedUpdate() {
@@ -27,7 +26,7 @@ public class Gunray : MonoBehaviour {
 
     private void LateUpdate() {
         if (Physics.Raycast(transform.position, transform.forward,
-            out m_beam, m_distance, m_pickupsLayer)) {
+                out m_beam, m_distance, m_pickupsLayer)) {
 
             if (!aimingPickup) {
                 AimColor(Color.green);
@@ -63,8 +62,7 @@ public class Gunray : MonoBehaviour {
     }
 
     void AimColor(Color newColor) {
-        Gradient gradient = new Gradient();
-        ;
+        Gradient gradient = new Gradient();;
         GradientColorKey[] colorKey = new GradientColorKey[1];
         colorKey[0].color = newColor;
         GradientAlphaKey[] alphaKey = new GradientAlphaKey[1];

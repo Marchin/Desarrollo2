@@ -116,4 +116,8 @@ public class AI : MonoBehaviour {
     void Success() {
         fails = 0;
     }
+
+    public bool IsEnemy() {
+        return m_isEnemy;
+    }
 }

@@ -3,21 +3,26 @@ using UnityEngine.Events;
 
 public class CharacterStats : MonoBehaviour {
 	[SerializeField] int _maxHealth;
-	public UnityEvent scoreChanged;
 	public UnityEvent lifeChanged;
 	int _currHealth;
-	int _score;
 
 	void Awake() {
 		_currHealth = _maxHealth;
-		_score = 0;
+	}
+
+	private void Start() {
+		ScoreManager._instance.Register(gameObject);
 	}
 
 	public void TakeDamage(int damage) {
+		Animator anim;
 		_currHealth -= damage;
 		lifeChanged.Invoke();
-		if (_currHealth <= 0){
+		if (_currHealth <= 0) {
+			ScoreManager._instance.Remove(gameObject);
 			gameObject.SetActive(false);
+		} else if (anim = GetComponent<Animator>()) {
+			anim.SetTrigger("Hit");
 		}
 	}
 
@@ -35,13 +40,4 @@ public class CharacterStats : MonoBehaviour {
 		return _currHealth;
 	}
 
-	public void AddScore(int points) {
-		_score += points;
-		ScoreManager._instance.SubmitScore(points);
-		scoreChanged.Invoke();
-	}
-
-	public int GetScore() {
-		return _score;
-	}
 }

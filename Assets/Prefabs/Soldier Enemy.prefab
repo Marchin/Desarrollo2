@@ -2650,12 +2650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21572c9cf54569b4d8f4a04feb02332e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 30
-  scoreChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  _maxHealth: 100
   lifeChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -15,7 +15,7 @@ public class Explosive : MonoBehaviour {
 		pickup.SetProperties(
 			m_radius,
 			m_affectedLayer,
-	
+
 			m_explosionEffect,
 			m_explosionSound,
 			Explode
@@ -29,10 +29,9 @@ public class Explosive : MonoBehaviour {
 			player = receiver.GetComponent<CharacterStats>();
 			if (player) {
 				player.TakeDamage(m_damage);
-				thrower.AddScore(m_damage);
 			}
 		}
-		if (Vector3.Distance(transform.position, thrower.transform.position)< m_radius) {
+		if (Vector3.Distance(transform.position, thrower.transform.position) < m_radius) {
 			thrower.TakeDamage(m_damage);
 		}
 	}
