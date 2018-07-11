@@ -7,10 +7,14 @@ public class PickupSpawner : MonoBehaviour {
     [SerializeField] int ammount;
     [SerializeField] float rangoX;
     [SerializeField] float rangoZ;
+    [HideInInspector]
+    public List<PickupPercentage> specialPickups;
     List<GameObject> pickupsList;
 
     void Start() {
         pickupsList = new List<GameObject>();
+        specialPickups = new List<PickupPercentage>();
+
         for (int i = 0; i < ammount; i++) {
             GameObject pickup = Instantiate(pickupPrefab);
             pickup.transform.SetParent(transform);
@@ -38,7 +42,12 @@ public class PickupSpawner : MonoBehaviour {
         pickup.SetActive(true);
     }
 
+    /*public PickupPercentage[] GetSpecialPickups() {
+        return specialPickups;
+    }*/
+
     private void OnDrawGizmos() {
         Gizmos.DrawWireCube(transform.position, new Vector3(rangoX * 2, 0f, rangoZ * 2));
     }
+
 }
