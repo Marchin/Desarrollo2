@@ -226,7 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_multiplier: 2
   m_duration: 3
-  m_radius: 4
+  m_radius: 3
   m_particleFx: {fileID: 198709158931656412}
   m_soundFx: {fileID: 82975583567879728}
   m_affected:
