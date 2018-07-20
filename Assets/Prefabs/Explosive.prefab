@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_damage: 25
-  m_radius: 2
+  m_radius: 4
   m_affectedLayer:
     serializedVersion: 2
     m_Bits: 1024

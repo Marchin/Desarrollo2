@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 114497992192067516}
   - component: {fileID: 114109782998584548}
   - component: {fileID: 114024767340866546}
+  - component: {fileID: 114327623848551860}
   m_Layer: 10
   m_Name: Soldier_Model
   m_TagString: Untagged
@@ -2650,11 +2651,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 0
-  scoreChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   lifeChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2672,6 +2668,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_aim: {fileID: 4985396686516206}
+--- !u!114 &114327623848551860
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1025779932177562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2c09fcc67a920478af4401543bc4f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_pps: {fileID: 11400000, guid: 4cb1d26a21d4b7f49be9e4fd5a8cd42f, type: 2}
 --- !u!114 &114497992192067516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2683,23 +2691,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dae533789884e945816be3c5959acf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ppController: {fileID: 114327623848551860}
   m_searchRadius: 8
   m_searchInterval: 3
   m_throwingDistance: 10
   m_isEnemy: 1
   m_aim: {fileID: 4985396686516206}
-  m_patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &114767932000932776
 MonoBehaviour:
   m_ObjectHideFlags: 1

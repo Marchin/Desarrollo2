@@ -7,7 +7,7 @@ public class Pickup : MonoBehaviour {
 	CharacterStats m_thrower;
 
 	private void Update() {
-		if (m_properties.state && m_properties.onContact) {
+		if (m_properties.isActive && m_properties.onContact) {
 			Thrown();
 		}
 	}
@@ -25,7 +25,7 @@ public class Pickup : MonoBehaviour {
 			m_properties.radius, m_properties.affected.value);
 		m_pickupFunc(affectedPlayers);
 
-		m_properties.state = false;
+		m_properties.isActive = false;
 		m_properties.particleFx.Play();
 		m_properties.soundFx.pitch = Random.Range(0.8f, 1.2f);
 		m_properties.soundFx.Play();
@@ -37,7 +37,8 @@ public class Pickup : MonoBehaviour {
 	public void SetProperties(float radius, LayerMask affectedLayers, ParticleSystem explosionEffect,
 		AudioSource explosionSound, PickupFunc pickupFunc) {
 
-		m_properties.state = false;
+		m_properties.isAvailable = true;
+		m_properties.isActive = false;
 		m_properties.onContact = false;
 		m_properties.radius = radius;
 		m_properties.affected = affectedLayers;
@@ -47,11 +48,15 @@ public class Pickup : MonoBehaviour {
 	}
 
 	public void Activate(CharacterStats thrower) {
-		m_thrower = thrower;
-		m_properties.state = true;
+		if (m_properties.isAvailable) {
+			m_thrower = thrower;
+			m_properties.isActive = true;
+			m_properties.isAvailable = false;
+		}
 	}
 
 	void Disable() {
+		m_properties.isAvailable = true;
 		GetComponent<MeshRenderer>().enabled = true;
 		GetComponent<Rigidbody>().isKinematic = false;
 		m_properties.particleFx.Stop();
@@ -70,12 +75,17 @@ public class Pickup : MonoBehaviour {
 		}
 	}
 
-	public LayerMask GetTarget() {
+	public LayerMask GetTargetLayer() {
 		return m_properties.affected;
 	}
 
+	public bool IsAvailable() {
+		return m_properties.isAvailable;
+	}
+
 	struct Properties {
-		public bool state;
+		public bool isAvailable;
+		public bool isActive;
 		public bool onContact;
 		public float radius;
 		public LayerMask affected;

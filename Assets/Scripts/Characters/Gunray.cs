@@ -54,9 +54,13 @@ public class Gunray : MonoBehaviour {
                     out m_beam, m_distance, m_pickupsLayer)) {
 
                 m_pickupRigidbody = m_beam.rigidbody;
-                m_pickupRigidbody.useGravity = false;
-                m_gunSound.Play();
                 m_pickup = m_pickupRigidbody.GetComponent<Pickup>();
+                if (m_pickup.IsAvailable()) {
+                    m_pickupRigidbody.useGravity = false;
+                    m_gunSound.Play();
+                } else {
+                    m_pickup = null;
+                }
             }
         }
     }

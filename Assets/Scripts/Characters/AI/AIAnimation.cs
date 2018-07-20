@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class AI_Animation : MonoBehaviour {
+public class AIAnimation : MonoBehaviour {
     [SerializeField] Transform m_aim;
     NavMeshAgent m_agent;
     Vector3 m_prevPos;
